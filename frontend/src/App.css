@@ -1,0 +1,761 @@
+/* ---------- Variables de diseño ---------- */
+:root {
+  --azul: #0056d2;
+  --azul-oscuro: #00419e;
+  --azul-suave: #eef4ff;
+  --negro: #0b0d14;
+  --texto: #111827;
+  --texto-suave: #6b7280;
+  --borde: #e5e7eb;
+  --borde-fuerte: #cbd5e1;
+  --fondo: #ffffff;
+  --fondo-suave: #f8fafc;
+  --exito: #15803d;
+  --exito-fondo: #f0fdf4;
+  --error: #b91c1c;
+  --error-fondo: #fef2f2;
+  --radio: 16px;
+  font-family: "Inter", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  color: var(--texto);
+  background: var(--fondo);
+  -webkit-font-smoothing: antialiased;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  background: var(--fondo);
+}
+
+#root {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+a {
+  color: var(--azul);
+}
+
+h1,
+h2,
+h3 {
+  letter-spacing: -0.02em;
+}
+
+/* ---------- Menú ---------- */
+.menu {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  background: rgba(255, 255, 255, 0.92);
+  backdrop-filter: blur(8px);
+  border-bottom: 1px solid var(--borde);
+}
+
+.menu-interno {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 1.5rem;
+  height: 64px;
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+}
+
+.marca {
+  font-size: 1.4rem;
+  font-weight: 800;
+  letter-spacing: -0.04em;
+  color: var(--azul);
+  text-decoration: none;
+}
+
+.marca span {
+  color: var(--texto);
+}
+
+.menu-enlaces {
+  display: flex;
+  gap: 0.25rem;
+  flex: 1;
+}
+
+.enlace {
+  padding: 0.45rem 0.8rem;
+  border-radius: 8px;
+  color: #374151;
+  font-size: 0.9rem;
+  font-weight: 500;
+  text-decoration: none;
+}
+
+.enlace:hover {
+  background: var(--fondo-suave);
+}
+
+.enlace.activo {
+  color: var(--texto);
+  font-weight: 700;
+  background: #f1f5f9;
+}
+
+/* ---------- Contenedor y títulos ---------- */
+.contenedor {
+  flex: 1;
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 2.5rem 1.5rem 3rem;
+}
+
+.titulo-pagina {
+  margin-bottom: 1.75rem;
+}
+
+.titulo-pagina h1 {
+  margin: 0;
+  font-size: clamp(1.7rem, 3vw, 2.3rem);
+  font-weight: 800;
+}
+
+.titulo-pagina p {
+  margin: 0.5rem 0 0;
+  color: var(--texto-suave);
+  font-size: 0.95rem;
+}
+
+.titulo-con-acciones {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.centrado {
+  text-align: center;
+  padding: 3rem 0;
+}
+
+.centrado .boton {
+  margin-top: 1.25rem;
+}
+
+.acciones {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.6rem;
+}
+
+/* ---------- Botones ---------- */
+.boton {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.65rem 1.15rem;
+  border: 1px solid var(--azul);
+  border-radius: 10px;
+  background: var(--azul);
+  color: #fff;
+  font: inherit;
+  font-size: 0.9rem;
+  font-weight: 700;
+  text-decoration: none;
+  cursor: pointer;
+  transition: background 0.15s;
+}
+
+.boton:hover {
+  background: var(--azul-oscuro);
+}
+
+.boton:disabled {
+  opacity: 0.55;
+  cursor: not-allowed;
+}
+
+.boton-borde {
+  background: #fff;
+  color: var(--azul);
+}
+
+.boton-borde:hover {
+  background: var(--azul-suave);
+}
+
+.boton-chico {
+  padding: 0.45rem 0.9rem;
+}
+
+.boton-claro {
+  background: #fff;
+  border-color: #fff;
+  color: var(--negro);
+}
+
+.boton-claro:hover {
+  background: #e5e7eb;
+}
+
+.boton-ancho {
+  width: 100%;
+  padding: 0.8rem;
+}
+
+.enlace-claro {
+  color: #cbd5e1;
+  font-size: 0.85rem;
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.enlace-claro:hover {
+  color: #fff;
+}
+
+.enlace-azul {
+  color: var(--azul);
+  font-size: 0.8rem;
+  font-weight: 700;
+}
+
+/* ---------- Filtros (píldoras) ---------- */
+.filtros {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-bottom: 1.5rem;
+}
+
+.pildora {
+  padding: 0.45rem 1rem;
+  border: 1px solid var(--borde-fuerte);
+  border-radius: 999px;
+  background: #fff;
+  color: #374151;
+  font: inherit;
+  font-size: 0.85rem;
+  font-weight: 500;
+  cursor: pointer;
+}
+
+.pildora:hover {
+  background: #f3f4f6;
+}
+
+.pildora.activa {
+  background: var(--texto);
+  border-color: var(--texto);
+  color: #fff;
+  font-weight: 700;
+}
+
+/* ---------- Grilla de tarjetas ---------- */
+.grilla {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  gap: 1.5rem;
+}
+
+/* ---------- Tarjeta destacada (oscura) ---------- */
+.tarjeta-destacada {
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  gap: 0.9rem;
+  padding: 1.6rem;
+  border-radius: var(--radio);
+  background: var(--negro);
+  color: #fff;
+}
+
+/* Brillos de color de fondo */
+.tarjeta-destacada::before,
+.tarjeta-destacada::after {
+  content: "";
+  position: absolute;
+  width: 220px;
+  height: 220px;
+  border-radius: 50%;
+  filter: blur(60px);
+  pointer-events: none;
+}
+
+.tarjeta-destacada::before {
+  top: -80px;
+  left: -80px;
+  background: rgba(147, 51, 234, 0.35);
+}
+
+.tarjeta-destacada::after {
+  bottom: -80px;
+  right: -80px;
+  background: rgba(37, 99, 235, 0.35);
+}
+
+.tarjeta-destacada > * {
+  position: relative;
+  z-index: 1;
+}
+
+.tarjeta-destacada h2 {
+  margin: 0;
+  font-size: 1.75rem;
+  font-weight: 800;
+  line-height: 1.2;
+}
+
+.tarjeta-destacada p,
+.tarjeta-destacada li {
+  margin: 0;
+  color: #cbd5e1;
+  font-size: 0.9rem;
+  line-height: 1.6;
+}
+
+.tarjeta-destacada ul {
+  margin: 0;
+  padding-left: 1.1rem;
+}
+
+.sello {
+  align-self: flex-start;
+  padding: 0.25rem 0.6rem;
+  border-radius: 6px;
+  background: var(--azul);
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+
+.acciones-columna {
+  margin-top: auto;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0.9rem;
+}
+
+/* ---------- Tarjeta de inscripción / categoría ---------- */
+.tarjeta {
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  border: 1px solid var(--borde);
+  border-radius: var(--radio);
+  background: #fff;
+  color: inherit;
+  text-decoration: none;
+  transition: transform 0.25s, box-shadow 0.25s, border-color 0.25s;
+}
+
+.tarjeta:hover {
+  transform: translateY(-4px);
+  border-color: var(--borde-fuerte);
+  box-shadow: 0 12px 24px -8px rgba(0, 0, 0, 0.1);
+}
+
+/* Parte superior con el arco de color */
+.tarjeta-arco {
+  position: relative;
+  height: 130px;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  background: var(--fondo-suave);
+  overflow: hidden;
+}
+
+.arco {
+  position: absolute;
+  inset: 18px 18px 0;
+  border-radius: 999px 999px 0 0;
+  background: linear-gradient(135deg, var(--arco-1), var(--arco-2));
+}
+
+.insignia {
+  position: absolute;
+  top: 26px;
+  right: 26px;
+  width: 32px;
+  height: 32px;
+  display: grid;
+  place-items: center;
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.6);
+  color: var(--arco-texto);
+}
+
+.avatar {
+  position: relative;
+  width: 72px;
+  height: 72px;
+  margin-bottom: 14px;
+  display: grid;
+  place-items: center;
+  border: 4px solid rgba(255, 255, 255, 0.85);
+  border-radius: 50%;
+  background: #fff;
+  color: var(--arco-texto);
+  font-size: 1.4rem;
+  font-weight: 800;
+}
+
+.tarjeta-cuerpo {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 0.45rem;
+  padding: 1.2rem 1.25rem 1rem;
+}
+
+.tarjeta-cuerpo h3 {
+  margin: 0;
+  font-size: 1.15rem;
+  font-weight: 700;
+  line-height: 1.3;
+}
+
+.tarjeta-categoria {
+  color: var(--arco-texto);
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+.tarjeta-descripcion {
+  margin: 0;
+  color: var(--texto-suave);
+  font-size: 0.82rem;
+  line-height: 1.55;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.tarjeta-telefono {
+  color: var(--texto-suave);
+}
+
+.tarjeta-participante {
+  margin: 0.35rem 0 0;
+  padding-top: 0.7rem;
+  border-top: 1px solid #f1f5f9;
+  font-size: 0.82rem;
+  color: #374151;
+}
+
+.tarjeta-pie {
+  display: grid;
+  grid-template-columns: 1fr auto auto;
+  gap: 0.75rem;
+  margin: 0;
+  padding: 0 1.25rem 1.2rem;
+  font-size: 0.78rem;
+}
+
+.tarjeta-pie div {
+  min-width: 0;
+}
+
+.tarjeta-pie dt {
+  color: var(--texto-suave);
+  font-size: 0.7rem;
+}
+
+.tarjeta-pie dd {
+  margin: 0.15rem 0 0;
+  font-weight: 600;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+/* Variante compacta usada en Inicio */
+.tarjeta-compacta .tarjeta-arco {
+  height: 96px;
+}
+
+.tarjeta-compacta .arco {
+  inset: 14px 28px 0;
+}
+
+.tarjeta-compacta .avatar {
+  width: 52px;
+  height: 52px;
+  margin-bottom: 10px;
+  border-width: 3px;
+}
+
+.tarjeta-compacta h3 {
+  font-size: 1.05rem;
+}
+
+/* El conteo queda siempre abajo para que todas las tarjetas se vean alineadas */
+.tarjeta-conteo {
+  margin-top: auto;
+  padding-top: 0.6rem;
+  color: var(--texto-suave);
+  font-size: 0.78rem;
+  font-weight: 600;
+}
+
+/* ---------- Cartillas de cursos ---------- */
+.volver-enlace {
+  display: inline-block;
+  margin-bottom: 1rem;
+  color: var(--texto-suave);
+  font-size: 0.85rem;
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.volver-enlace:hover {
+  color: var(--texto);
+}
+
+/* El fondo de color se ve mientras carga la imagen o si no carga */
+.curso-imagen {
+  aspect-ratio: 5 / 3;
+  background: linear-gradient(135deg, var(--arco-1), var(--arco-2));
+  overflow: hidden;
+}
+
+.curso-imagen img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.4s;
+}
+
+.tarjeta-curso:hover .curso-imagen img {
+  transform: scale(1.04);
+}
+
+.curso-boton {
+  margin-top: auto;
+}
+
+.tarjeta-curso .tarjeta-descripcion {
+  margin-bottom: 0.9rem;
+}
+
+/* Colores de cada categoría */
+.color-azul { --arco-1: #7dd3fc; --arco-2: #3b82f6; --arco-texto: #1d4ed8; }
+.color-ambar { --arco-1: #fde68a; --arco-2: #f59e0b; --arco-texto: #b45309; }
+.color-rosa { --arco-1: #fda4af; --arco-2: #e11d48; --arco-texto: #be123c; }
+.color-verde { --arco-1: #a7f3d0; --arco-2: #10b981; --arco-texto: #047857; }
+.color-violeta { --arco-1: #ddd6fe; --arco-2: #8b5cf6; --arco-texto: #6d28d9; }
+.color-gris { --arco-1: #e2e8f0; --arco-2: #94a3b8; --arco-texto: #475569; }
+
+/* ---------- Registro ---------- */
+.registro-columnas {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 320px;
+  gap: 1.5rem;
+  align-items: start;
+}
+
+.registro-ayuda h2 {
+  font-size: 1.4rem;
+}
+
+/* ---------- Formulario ---------- */
+.formulario {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.1rem;
+  padding: 1.6rem;
+  border: 1px solid var(--borde);
+  border-radius: var(--radio);
+  background: #fff;
+}
+
+/* Resumen del curso y botón ocupan todo el ancho */
+.formulario .curso-resumen,
+.formulario .boton {
+  grid-column: 1 / -1;
+}
+
+/* Curso elegido (solo lectura) */
+.curso-resumen {
+  display: flex;
+  align-items: center;
+  gap: 0.9rem;
+  padding: 0.75rem;
+  border: 1px solid var(--borde);
+  border-radius: 12px;
+  background: var(--fondo-suave);
+}
+
+.curso-resumen img {
+  width: 64px;
+  height: 64px;
+  flex-shrink: 0;
+  border-radius: 10px;
+  object-fit: cover;
+  background: linear-gradient(135deg, var(--arco-1), var(--arco-2));
+}
+
+.curso-resumen div {
+  flex: 1;
+  display: grid;
+  gap: 0.2rem;
+  min-width: 0;
+}
+
+.curso-resumen strong {
+  font-size: 1.05rem;
+}
+
+.curso-resumen small {
+  color: var(--texto-suave);
+  font-size: 0.8rem;
+}
+
+.curso-cambiar {
+  flex-shrink: 0;
+  font-size: 0.8rem;
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.curso-cambiar:hover {
+  text-decoration: underline;
+}
+
+.campo {
+  display: grid;
+  gap: 0.4rem;
+  font-size: 0.85rem;
+  font-weight: 600;
+}
+
+.campo input,
+.campo select,
+.campo textarea {
+  width: 100%;
+  padding: 0.65rem 0.8rem;
+  border: 1px solid var(--borde-fuerte);
+  border-radius: 10px;
+  background: #fff;
+  color: var(--texto);
+  font: inherit;
+  font-size: 0.9rem;
+  font-weight: 400;
+}
+
+.campo input:focus,
+.campo select:focus,
+.campo textarea:focus {
+  outline: none;
+  border-color: var(--azul);
+  box-shadow: 0 0 0 3px rgba(0, 86, 210, 0.15);
+}
+
+.campo-error input,
+.campo-error select,
+.campo-error textarea {
+  border-color: var(--error);
+}
+
+.texto-error {
+  color: var(--error);
+  font-size: 0.78rem;
+  font-weight: 500;
+}
+
+/* ---------- Mensajes ---------- */
+.mensaje {
+  margin-bottom: 1.25rem;
+  padding: 0.85rem 1rem;
+  border: 1px solid var(--borde);
+  border-radius: 12px;
+  background: var(--fondo-suave);
+  font-size: 0.9rem;
+}
+
+.mensaje-exito {
+  border-color: #bbf7d0;
+  background: var(--exito-fondo);
+  color: var(--exito);
+}
+
+.mensaje-error {
+  border-color: #fecaca;
+  background: var(--error-fondo);
+  color: var(--error);
+}
+
+.mensaje-carga {
+  color: var(--texto-suave);
+}
+
+/* ---------- Pie ---------- */
+.pie {
+  border-top: 1px solid var(--borde);
+  padding: 1.5rem;
+  text-align: center;
+  color: var(--texto-suave);
+  font-size: 0.78rem;
+}
+
+.pie p {
+  margin: 0;
+}
+
+/* ---------- Pantallas medianas y pequeñas ---------- */
+.solo-movil {
+  display: none;
+}
+
+@media (max-width: 860px) {
+  .registro-columnas {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 600px) {
+  .menu-interno {
+    padding: 0 1rem;
+    gap: 0.75rem;
+  }
+
+  .enlace {
+    padding: 0.4rem 0.55rem;
+  }
+
+  .solo-movil {
+    display: inline-block;
+  }
+
+  .solo-escritorio {
+    display: none;
+  }
+
+  .contenedor {
+    padding: 1.75rem 1rem 2.5rem;
+  }
+
+  .formulario {
+    grid-template-columns: 1fr;
+    padding: 1.1rem;
+  }
+
+  .acciones {
+    width: 100%;
+  }
+
+  .acciones .boton {
+    flex: 1;
+  }
+}
