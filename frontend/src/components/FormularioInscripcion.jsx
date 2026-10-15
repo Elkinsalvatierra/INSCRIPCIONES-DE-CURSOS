@@ -7,7 +7,6 @@ const VALORES_INICIALES = {
   email: "",
   cedula: "",
   telefono: "",
-  descripcion: "",
   fecha: "",
   categoria: "",
   curso: "",
@@ -18,7 +17,7 @@ function hoy() {
   fecha.setMinutes(fecha.getMinutes() - fecha.getTimezoneOffset());
   return fecha.toISOString().slice(0, 10);
 }
-
+const SOLO_LETRAS = /^[A-Za-zÁÉÍÓÚáéíóúÑñÜü]+( [A-Za-zÁÉÍÓÚáéíóúÑñÜü]+)*$/;
 function cedulaValida(cedula) {
   if (!/^\d{10}$/.test(cedula)) return false;
 
@@ -38,8 +37,14 @@ function cedulaValida(cedula) {
 function validar(valores) {
   const errores = {};
 
-  if (!valores.nombre.trim()) {
+  const nombre = valores.nombre.trim();
+
+  if (!nombre) {
     errores.nombre = "El nombre es obligatorio.";
+  } else if (!SOLO_LETRAS.test(nombre)) {
+    errores.nombre = "El nombre solo puede tener letras y espacios.";
+  } else if (nombre.length < 3) {
+    errores.nombre = "El nombre debe tener al menos 3 letras.";
   }
 
   if (!valores.email.trim()) {
@@ -58,12 +63,6 @@ function validar(valores) {
     errores.telefono = "El teléfono es obligatorio.";
   } else if (!/^0\d{8,9}$/.test(valores.telefono)) {
     errores.telefono = "Debe tener 9 o 10 dígitos y empezar con 0.";
-  }
-
-  if (!valores.descripcion.trim()) {
-    errores.descripcion = "La descripción es obligatoria.";
-  } else if (valores.descripcion.trim().length < 10) {
-    errores.descripcion = "La descripción debe tener al menos 10 caracteres.";
   }
 
   if (!valores.fecha) {
@@ -89,11 +88,24 @@ function FormularioInscripcion({ valoresIniciales, onEnviar, enviando }) {
     ...valoresIniciales,
   }));
   const [errores, setErrores] = useState({});
-  const categoria = CATEGORIAS.find((item) => item.nombre === valores.categoria);
+   const categoria = CATEGORIAS.find((item) => item.nombre === valores.categoria);
+   const curso = categoria?.cursos.find((item) => item.nombre === valores.curso);
 
   function manejarCambio(evento) {
     const { name, value } = evento.target;
-    const valor = name === "cedula" || name === "telefono" ? value.replace(/\D/g, "") : value;
+    let valor = value;
+
+    if (name === "cedula" || name === "telefono") {
+      valor = value.replace(/\D/g, "");
+    }
+
+    // En el nombre se eliminan números y símbolos mientras se escribe
+    if (name === "nombre") {
+      valor = value
+        .replace(/[^A-Za-zÁÉÍÓÚáéíóúÑñÜü ]/g, "")
+        .replace(/ {2,}/g, " ")
+        .replace(/^ /, "");
+    }
 
     setValores((actuales) => ({
       ...actuales,
@@ -116,7 +128,7 @@ function FormularioInscripcion({ valoresIniciales, onEnviar, enviando }) {
       email: valores.email.trim(),
       cedula: valores.cedula,
       telefono: valores.telefono,
-      descripcion: valores.descripcion.trim(),
+      descripcion: curso.descripcion,
       fecha: valores.fecha,
       categoria: valores.categoria,
       curso: valores.curso,
@@ -185,7 +197,7 @@ function FormularioInscripcion({ valoresIniciales, onEnviar, enviando }) {
         </select>
       </Campo>
 
-      <Campo etiqueta="Curso" error={errores.curso}>
+            <Campo etiqueta="Curso" error={errores.curso}>
         <select
           name="curso"
           value={valores.curso}
@@ -201,6 +213,12 @@ function FormularioInscripcion({ valoresIniciales, onEnviar, enviando }) {
         </select>
       </Campo>
 
+      {curso && (
+        <p className="descripcion-curso">
+          <strong>Descripción del curso:</strong> {curso.descripcion}
+        </p>
+      )}
+
       <Campo etiqueta="Fecha de inicio" error={errores.fecha}>
         <input
           name="fecha"
@@ -208,16 +226,6 @@ function FormularioInscripcion({ valoresIniciales, onEnviar, enviando }) {
           min={hoy()}
           value={valores.fecha}
           onChange={manejarCambio}
-        />
-      </Campo>
-
-      <Campo etiqueta="Descripción" error={errores.descripcion}>
-        <textarea
-          name="descripcion"
-          rows="4"
-          value={valores.descripcion}
-          onChange={manejarCambio}
-          placeholder="Motivo de la inscripción o comentarios"
         />
       </Campo>
 
