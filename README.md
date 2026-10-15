@@ -129,12 +129,14 @@ http://localhost:5173
 
 - Página de inicio con las categorías de cursos.
 - Catálogo de cursos por categoría.
-- Tarjetas reutilizables para categorías, cursos e inscripciones.
+- Tarjetas reutilizables para categorías (con imagen propia), cursos e inscripciones.
 - Formulario de inscripción con validación de nombre (solo letras), correo, cédula, teléfono, fecha, categoría y curso.
 - La descripción de la inscripción se toma automáticamente del curso elegido.
 - Envío de inscripciones a `POST /registros`.
 - Lista de inscripciones obtenidas con `GET /registros`, con filtro por categoría y botón para actualizar.
 - Mensajes de carga, error y lista vacía.
+- Mensaje "¡Inscripción completada con éxito!" al registrar una inscripción.
+- Botones para volver al catálogo, a las categorías o al inicio.
 - Menú de navegación y pie de página en todas las páginas.
 - Página 404 para rutas que no existen.
 - Estilos globales, colores por categoría y diseño adaptable a celular.
@@ -168,7 +170,7 @@ http://localhost:5173/lista?categoria=Idiomas
 - Negocios
 - Salud
 
-Cada categoría tiene nombre, color, descripción y una lista de cursos con su descripción e imagen.
+Cada categoría tiene nombre, color, descripción, una imagen propia (distinta a la de sus cursos) y una lista de cursos con su descripción e imagen.
 
 ## Validar el frontend
 
@@ -228,7 +230,7 @@ frontend/
 - `src/App.css`: estilos globales, colores por categoría y diseño para celular.
 - `src/pages/Inicio.jsx`: muestra las categorías disponibles.
 - `src/pages/Categoria.jsx`: muestra los cursos de la categoría seleccionada.
-- `src/pages/Registro.jsx`: presenta el formulario y el resultado del envío.
+- `src/pages/Registro.jsx`: presenta el formulario y muestra el mensaje de inscripción completada o el error.
 - `src/pages/Lista.jsx`: consulta las inscripciones con `GET /registros` y las filtra por categoría.
 - `src/pages/NoEncontrado.jsx`: página 404.
 - `src/components/FormularioInscripcion.jsx`: valida los datos y registra la inscripción.
