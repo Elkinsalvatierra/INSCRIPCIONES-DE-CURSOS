@@ -1,12 +1,17 @@
 .mensaje-inscripcion {
   max-width: 760px;
   margin: 1rem auto;
+  padding: 0.9rem 1rem;
+  border-radius: 0.5rem;
+  font-weight: 600;
 }
 
 .mensaje-inscripcion-error {
+  background: #fef2f2;
   color: #b91c1c;
 }
 
 .mensaje-inscripcion-exito {
+  background: #f0fdf4;
   color: #166534;
 }

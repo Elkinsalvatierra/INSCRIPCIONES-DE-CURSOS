@@ -10,14 +10,14 @@ function Categoria() {
     return (
       <main>
         <p>La categoría solicitada no existe.</p>
-        <Link to="/">Volver al inicio</Link>
+        <Link to="/" className="boton-volver">Volver al inicio</Link>
       </main>
     );
   }
 
   return (
     <main>
-      <Link to="/">Volver a categorías</Link>
+      <Link to="/" className="boton-volver">Volver a categorías</Link>
       <h1>Cursos de {categoria.nombre}</h1>
       <p>{categoria.descripcion}</p>
       <section aria-label={`Cursos de ${categoria.nombre}`}>

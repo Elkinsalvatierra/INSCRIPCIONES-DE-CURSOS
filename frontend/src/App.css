@@ -356,6 +356,31 @@ main > section {
   background: #eff6ff;
 }
 
+/* ---------- Botón para volver ---------- */
+.boton-volver {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  margin-bottom: 1rem;
+  padding: 0.5rem 1rem;
+  border: 1px solid var(--borde);
+  border-radius: 999px;
+  background: var(--superficie);
+  color: var(--texto);
+  font-weight: 600;
+  text-decoration: none;
+  transition: border-color 0.15s, color 0.15s;
+}
+
+.boton-volver::before {
+  content: "←";
+}
+
+.boton-volver:hover {
+  border-color: var(--primario);
+  color: var(--primario);
+}
+
 /* ---------- Página 404 ---------- */
 .no-encontrado {
   text-align: center;

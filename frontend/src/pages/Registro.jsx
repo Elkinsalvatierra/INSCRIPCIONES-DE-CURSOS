@@ -21,12 +21,10 @@ function Registro() {
     setMensaje(null);
 
     try {
-      const registro = await crearInscripcion(inscripcion);
+      await crearInscripcion(inscripcion);
       setMensaje({
         tipo: "exito",
-        texto: registro?.id
-          ? `Inscripción #${registro.id} registrada correctamente.`
-          : "Inscripción registrada correctamente.",
+        texto: "¡Inscripción completada con éxito!",
       });
       return true;
     } catch (error) {
@@ -42,7 +40,10 @@ function Registro() {
 
   return (
     <main>
-      <Link to={categoria ? `/categoria/${encodeURIComponent(categoria.nombre)}` : "/"}>
+      <Link
+        to={categoria ? `/categoria/${encodeURIComponent(categoria.nombre)}` : "/"}
+        className="boton-volver"
+      >
         Volver al catálogo
       </Link>
       <h1>Nueva inscripción</h1>
