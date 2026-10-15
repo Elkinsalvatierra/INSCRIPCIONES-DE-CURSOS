@@ -133,7 +133,7 @@ http://localhost:5173
 - Formulario de inscripción con validación de nombre (solo letras), correo, cédula, teléfono, fecha, categoría y curso.
 - La descripción de la inscripción se toma automáticamente del curso elegido.
 - Envío de inscripciones a `POST /registros`.
-- Lista de inscripciones obtenidas con `GET /registros`, con filtro por categoría y botón para actualizar.
+- Lista de inscripciones obtenidas con `GET /registros`, con filtro por categoría, buscador por nombre y botón para actualizar.
 - Mensajes de carga, error y lista vacía.
 - Mensaje "¡Inscripción completada con éxito!" al registrar una inscripción.
 - Botones para volver al catálogo, a las categorías o al inicio.
@@ -231,7 +231,7 @@ frontend/
 - `src/pages/Inicio.jsx`: muestra las categorías disponibles.
 - `src/pages/Categoria.jsx`: muestra los cursos de la categoría seleccionada.
 - `src/pages/Registro.jsx`: presenta el formulario y muestra el mensaje de inscripción completada o el error.
-- `src/pages/Lista.jsx`: consulta las inscripciones con `GET /registros` y las filtra por categoría.
+- `src/pages/Lista.jsx`: consulta las inscripciones con `GET /registros`, las filtra por categoría y permite buscar por nombre.
 - `src/pages/NoEncontrado.jsx`: página 404.
 - `src/components/FormularioInscripcion.jsx`: valida los datos y registra la inscripción.
 - `src/components/Menu.jsx` y `src/components/Pie.jsx`: navegación y pie de página.

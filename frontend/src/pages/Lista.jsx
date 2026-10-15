@@ -11,6 +11,7 @@ function Lista() {
   const [error, setError] = useState("");
   const [parametros, setParametros] = useSearchParams();
   const categoria = parametros.get("categoria") || "";
+  const [busqueda, setBusqueda] = useState("");
 
   async function cargar() {
     setCargando(true);
@@ -33,9 +34,13 @@ function Lista() {
     setParametros(nueva ? { categoria: nueva } : {});
   }
 
-  const visibles = categoria
-    ? inscripciones.filter((inscripcion) => inscripcion.categoria === categoria)
-    : inscripciones;
+  // Se muestran las inscripciones de la categoría elegida cuyo nombre contiene el texto buscado
+  const texto = busqueda.trim().toLowerCase();
+  const visibles = inscripciones.filter(
+    (inscripcion) =>
+      (!categoria || inscripcion.categoria === categoria) &&
+      inscripcion.nombre.toLowerCase().includes(texto)
+  );
 
   return (
     <main>
@@ -55,6 +60,15 @@ function Lista() {
 
       <FiltroCategorias seleccionada={categoria} onCambiar={cambiarCategoria} />
 
+      <input
+        type="search"
+        className="buscador"
+        placeholder="Buscar por nombre..."
+        aria-label="Buscar por nombre"
+        value={busqueda}
+        onChange={(evento) => setBusqueda(evento.target.value)}
+      />
+
       {cargando && <Mensaje tipo="carga">Cargando inscripciones...</Mensaje>}
       {!cargando && error && <Mensaje tipo="error">{error}</Mensaje>}
       {!cargando && !error && inscripciones.length === 0 && (
@@ -63,7 +77,7 @@ function Lista() {
         </Mensaje>
       )}
       {!cargando && !error && inscripciones.length > 0 && visibles.length === 0 && (
-        <Mensaje>No hay inscripciones en la categoría {categoria}.</Mensaje>
+        <Mensaje>No hay inscripciones que coincidan con la búsqueda.</Mensaje>
       )}
 
       {!cargando && !error && visibles.length > 0 && (
