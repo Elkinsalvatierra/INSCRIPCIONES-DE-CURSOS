@@ -90,3 +90,131 @@ Si los datos son incorrectos, devuelve el código HTTP 400 con un mensaje de err
 
 # Registros
 Las inscripciones se almacenan en el archivo `backend/data/registros.json.`, se comprobó que los datos permanecen guardados después de detener y volver a iniciar el servidor, esto permite conservar las inscripciones sin utilizar una base de datos externa.
+
+```markdown
+# Frontend
+
+El frontend corresponde a la parte de inicio, categorías y catálogo de cursos. Está desarrollado con React, Vite y React Router, y se encuentra dentro de la carpeta `frontend`.
+
+## Instalar las dependencias del frontend
+
+Desde la carpeta raíz del proyecto ejecutamos:
+
+```bash
+cd frontend
+npm install
+```
+
+Este comando instala las dependencias definidas en `package.json`.
+
+> La carpeta `node_modules` se genera localmente y no debe subirse al repositorio.
+
+## Iniciar el frontend
+
+Para iniciar la aplicación en modo desarrollo ejecutamos:
+
+```bash
+npm run dev
+```
+
+La aplicación estará disponible normalmente en:
+
+```text
+http://localhost:5173
+```
+
+## Funcionalidades implementadas
+
+La parte desarrollada incluye:
+
+- Página de inicio.
+- Visualización de categorías de cursos.
+- Catálogo de cursos por categoría.
+- Tarjetas reutilizables para categorías.
+- Tarjetas reutilizables para cursos.
+- Navegación entre el inicio y las categorías mediante React Router.
+
+## Rutas disponibles
+
+```text
+/                         Página de inicio
+/categoria/:nombre        Catálogo de cursos de una categoría
+```
+
+Ejemplos:
+
+```text
+http://localhost:5173/
+http://localhost:5173/categoria/Tecnología
+http://localhost:5173/categoria/Idiomas
+http://localhost:5173/categoria/Negocios
+```
+
+## Categorías disponibles
+
+Actualmente el catálogo contiene las siguientes categorías:
+
+- Tecnología
+- Idiomas
+- Arte y diseño
+- Negocios
+- Salud
+
+Cada categoría contiene:
+
+- Nombre.
+- Color identificador.
+- Descripción.
+- Lista de cursos.
+- Descripción de cada curso.
+- Imagen de cada curso.
+
+## Validar el frontend
+
+Para generar una compilación de producción ejecutamos:
+
+```bash
+npm run build
+```
+
+Para revisar el código con el linter ejecutamos:
+
+```bash
+npm run lint
+```
+
+## Estructura del frontend
+
+```text
+frontend/
+├── package.json
+├── package-lock.json
+├── index.html
+├── vite.config.js
+├── .env.example
+├── .gitignore
+└── src/
+    ├── App.jsx
+    ├── main.jsx
+    ├── components/
+    │   ├── IconoCategoria.jsx
+    │   ├── TarjetaCategoria.jsx
+    │   └── TarjetaCurso.jsx
+    ├── data/
+    │   └── categorias.js
+    └── pages/
+        ├── Categoria.jsx
+        └── Inicio.jsx
+```
+
+## Descripción de los archivos principales
+
+- `src/main.jsx`: punto de entrada de la aplicación y configuración de `BrowserRouter`.
+- `src/App.jsx`: configuración de las rutas del inicio y del catálogo.
+- `src/pages/Inicio.jsx`: muestra el inicio y las categorías disponibles.
+- `src/pages/Categoria.jsx`: muestra los cursos de la categoría seleccionada.
+- `src/data/categorias.js`: contiene las categorías, los cursos, sus descripciones e imágenes.
+- `src/components/TarjetaCategoria.jsx`: muestra una tarjeta reutilizable para cada categoría.
+- `src/components/TarjetaCurso.jsx`: muestra una tarjeta reutilizable para cada curso.
+- `src/components/IconoCategoria.jsx`: muestra el identificador visual de cada categoría.
+```
