@@ -90,3 +90,192 @@ Si los datos son incorrectos, devuelve el código HTTP 400 con un mensaje de err
 
 # Registros
 Las inscripciones se almacenan en el archivo `backend/data/registros.json.`, se comprobó que los datos permanecen guardados después de detener y volver a iniciar el servidor, esto permite conservar las inscripciones sin utilizar una base de datos externa.
+
+Agrega esta sección al final de tu `README.md`:
+
+```markdown
+# Frontend
+
+El frontend es una aplicación SPA desarrollada con React, Vite y React Router. Se encuentra dentro de la carpeta `frontend` y se comunica con el backend mediante las rutas `/registros`.
+
+## Instalar las dependencias del frontend
+
+Desde la carpeta raíz del proyecto ejecutamos:
+
+```bash
+cd frontend
+npm install
+```
+
+Esto instala React, React DOM, React Router y las herramientas de desarrollo de Vite.
+
+## Iniciar el frontend
+
+Con el backend ejecutándose en una terminal, abrimos otra terminal, entramos en la carpeta `frontend` y ejecutamos:
+
+```bash
+npm run dev
+```
+
+La aplicación estará disponible en:
+
+```text
+http://localhost:5173
+```
+
+Para que el frontend pueda comunicarse con el backend, este debe estar disponible en:
+
+```text
+http://localhost:3000
+```
+
+Si se necesita utilizar otra dirección, copiamos `.env.example` como `.env` y configuramos:
+
+```env
+VITE_API_URL=http://localhost:3000
+```
+
+## Páginas y navegación
+
+El frontend incluye las siguientes rutas:
+
+- `/`: página de inicio con la bienvenida y las categorías disponibles.
+- `/categoria/:nombre`: catálogo de cursos de una categoría seleccionada.
+- `/registro`: formulario para crear una inscripción.
+- `/lista`: consulta y muestra las inscripciones guardadas mediante `GET /registros`.
+
+La navegación principal se encuentra en:
+
+```text
+frontend/src/components/Menu.jsx
+```
+
+Las rutas se configuran en:
+
+```text
+frontend/src/App.jsx
+```
+
+## Categorías y catálogo de cursos
+
+Las categorías y sus cursos se encuentran en:
+
+```text
+frontend/src/data/categorias.js
+```
+
+Actualmente están disponibles:
+
+- Tecnología
+- Idiomas
+- Arte y diseño
+- Negocios
+- Salud
+
+Cada categoría contiene una descripción, un color y un catálogo de cursos. Cada curso incluye su nombre, descripción e imagen.
+
+Las tarjetas de categorías y cursos se muestran mediante los siguientes componentes:
+
+```text
+frontend/src/components/TarjetaCategoria.jsx
+frontend/src/components/TarjetaCurso.jsx
+```
+
+## Formulario y lista de inscripciones
+
+El formulario se encuentra en:
+
+```text
+frontend/src/components/FormularioInscripcion.jsx
+```
+
+Este componente administra los datos ingresados y muestra los mensajes de validación. El envío se realiza mediante `POST /registros`, utilizando el servicio:
+
+```text
+frontend/src/services/api.js
+```
+
+La lista de inscripciones se encuentra en:
+
+```text
+frontend/src/pages/Lista.jsx
+```
+
+Esta página consulta `GET /registros`, muestra los estados de carga, error y lista vacía, y permite filtrar las inscripciones por categoría.
+
+## Validar el frontend
+
+Para generar una compilación de producción ejecutamos desde la carpeta `frontend`:
+
+```bash
+npm run build
+```
+
+Para revisar el código con el linter ejecutamos:
+
+```bash
+npm run lint
+```
+
+## Estructura del frontend
+
+```text
+frontend/
+├── public/
+├── src/
+│   ├── components/
+│   │   ├── FiltroCategorias.jsx
+│   │   ├── FormularioInscripcion.jsx
+│   │   ├── IconoCategoria.jsx
+│   │   ├── Mensaje.jsx
+│   │   ├── Menu.jsx
+│   │   ├── Pie.jsx
+│   │   ├── TarjetaCategoria.jsx
+│   │   ├── TarjetaCurso.jsx
+│   │   └── TarjetaInscripcion.jsx
+│   ├── data/
+│   │   └── categorias.js
+│   ├── pages/
+│   │   ├── Categoria.jsx
+│   │   ├── Inicio.jsx
+│   │   ├── Lista.jsx
+│   │   ├── NoEncontrado.jsx
+│   │   └── Registro.jsx
+│   ├── services/
+│   │   └── api.js
+│   ├── App.css
+│   ├── App.jsx
+│   └── main.jsx
+├── package.json
+└── package-lock.json
+```
+
+## Ejecutar el proyecto completo
+
+Para ejecutar el proyecto completo se utilizan dos terminales.
+
+### Terminal 1: Backend
+
+```bash
+cd backend
+npm run dev
+```
+
+### Terminal 2: Frontend
+
+```bash
+cd frontend
+npm run dev
+```
+
+Después abrimos la siguiente dirección en el navegador:
+
+```text
+http://localhost:5173
+```
+
+El frontend consumirá la API del backend en:
+
+```text
+http://localhost:3000
+``` 
