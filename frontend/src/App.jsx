@@ -2,6 +2,7 @@ import { Route, Routes } from "react-router-dom";
 import Inicio from "./pages/Inicio.jsx";
 import Categoria from "./pages/Categoria.jsx";
 import Registro from "./pages/Registro.jsx";
+import Lista from "./pages/Lista.jsx";
 
 function App() {
   return (
@@ -9,6 +10,7 @@ function App() {
       <Route path="/" element={<Inicio />} />
       <Route path="/categoria/:nombre" element={<Categoria />} />
       <Route path="/registro" element={<Registro />} />
+      <Route path="/lista" element={<Lista />} />
     </Routes>
   );
 }

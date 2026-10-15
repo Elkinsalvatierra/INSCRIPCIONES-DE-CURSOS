@@ -57,3 +57,12 @@ export const CATEGORIAS = [
     ],
   },
 ];
+export function buscarCategoria(nombre) {
+  return (
+    CATEGORIAS.find((categoria) => categoria.nombre === nombre) || {
+      nombre,
+      color: "gris",
+      cursos: [],
+    }
+  );
+}
