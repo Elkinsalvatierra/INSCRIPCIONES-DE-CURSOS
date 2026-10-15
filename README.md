@@ -94,7 +94,7 @@ Las inscripciones se almacenan en el archivo `backend/data/registros.json.`, se 
 ```markdown
 # Frontend
 
-El frontend corresponde a la parte de inicio, categorías y catálogo de cursos. Está desarrollado con React, Vite y React Router, y se encuentra dentro de la carpeta `frontend`.
+El frontend está desarrollado con React, Vite y React Router, y se encuentra dentro de la carpeta `frontend`. Incluye el inicio, las categorías, el catálogo y el formulario de inscripción conectado con la API.
 
 ## Instalar las dependencias del frontend
 
@@ -132,6 +132,8 @@ La parte desarrollada incluye:
 - Catálogo de cursos por categoría.
 - Tarjetas reutilizables para categorías.
 - Tarjetas reutilizables para cursos.
+- Formulario con validación de nombre, correo, cédula, teléfono, descripción, fecha, categoría y curso.
+- Envío de inscripciones a `POST /registros`.
 - Navegación entre el inicio y las categorías mediante React Router.
 
 ## Rutas disponibles
@@ -139,6 +141,7 @@ La parte desarrollada incluye:
 ```text
 /                         Página de inicio
 /categoria/:nombre        Catálogo de cursos de una categoría
+/registro                 Formulario de inscripción
 ```
 
 Ejemplos:
@@ -148,6 +151,7 @@ http://localhost:5173/
 http://localhost:5173/categoria/Tecnología
 http://localhost:5173/categoria/Idiomas
 http://localhost:5173/categoria/Negocios
+http://localhost:5173/registro
 ```
 
 ## Categorías disponibles
@@ -197,14 +201,19 @@ frontend/
     ├── App.jsx
     ├── main.jsx
     ├── components/
+    │   ├── FormularioInscripcion.jsx
+    │   ├── FormularioInscripcion.css
     │   ├── IconoCategoria.jsx
     │   ├── TarjetaCategoria.jsx
     │   └── TarjetaCurso.jsx
     ├── data/
     │   └── categorias.js
-    └── pages/
-        ├── Categoria.jsx
-        └── Inicio.jsx
+    ├── pages/
+    │   ├── Categoria.jsx
+    │   ├── Inicio.jsx
+    │   └── Registro.jsx
+    └── services/
+        └── api.js
 ```
 
 ## Descripción de los archivos principales
@@ -213,6 +222,9 @@ frontend/
 - `src/App.jsx`: configuración de las rutas del inicio y del catálogo.
 - `src/pages/Inicio.jsx`: muestra el inicio y las categorías disponibles.
 - `src/pages/Categoria.jsx`: muestra los cursos de la categoría seleccionada.
+- `src/pages/Registro.jsx`: presenta el formulario y muestra el resultado del envío a la API.
+- `src/components/FormularioInscripcion.jsx`: valida los datos y permite registrar la inscripción.
+- `src/services/api.js`: envía la inscripción a `POST /registros`.
 - `src/data/categorias.js`: contiene las categorías, los cursos, sus descripciones e imágenes.
 - `src/components/TarjetaCategoria.jsx`: muestra una tarjeta reutilizable para cada categoría.
 - `src/components/TarjetaCurso.jsx`: muestra una tarjeta reutilizable para cada curso.

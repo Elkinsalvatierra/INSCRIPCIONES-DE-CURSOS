@@ -22,7 +22,7 @@ function Categoria() {
       <p>{categoria.descripcion}</p>
       <section aria-label={`Cursos de ${categoria.nombre}`}>
         {categoria.cursos.map((curso) => (
-          <TarjetaCurso key={curso.nombre} curso={curso} />
+          <TarjetaCurso key={curso.nombre} curso={curso} categoria={categoria} />
         ))}
       </section>
     </main>
