@@ -5,6 +5,7 @@ export const CATEGORIAS = [
     nombre: "Tecnología",
     color: "azul",
     descripcion: "Programación, bases de datos y desarrollo web.",
+    imagen: foto("1518770660439-4636190af475"),
     cursos: [
       { nombre: "SQL Server", descripcion: "Diseña bases de datos y escribe consultas con T-SQL.", imagen: foto("1544383835-bda2bc66a55d") },
       { nombre: "Desarrollo web con React", descripcion: "Crea interfaces modernas con componentes, estado y rutas.", imagen: foto("1633356122544-f134324a6cee") },
@@ -16,6 +17,7 @@ export const CATEGORIAS = [
     nombre: "Idiomas",
     color: "ambar",
     descripcion: "Inglés, portugués y otros idiomas.",
+    imagen: foto("1543109740-4bdb38fda756"),
     cursos: [
       { nombre: "Inglés básico", descripcion: "Vocabulario y frases para comunicarte desde el primer día.", imagen: foto("1546410531-bb4caa6b424d") },
       { nombre: "Inglés intermedio", descripcion: "Mejora tu conversación, lectura y escritura.", imagen: foto("1434030216411-0b793f4b4173") },
@@ -27,6 +29,7 @@ export const CATEGORIAS = [
     nombre: "Arte y diseño",
     color: "rosa",
     descripcion: "Diseño gráfico, ilustración y fotografía.",
+    imagen: foto("1460661419201-fd4cecdf8a8b"),
     cursos: [
       { nombre: "Diseño gráfico", descripcion: "Composición, tipografía y color para piezas visuales.", imagen: foto("1586717791821-3f44a563fa4c") },
       { nombre: "Ilustración digital", descripcion: "Dibuja y colorea con herramientas digitales.", imagen: foto("1561070791-2526d30994b5") },
@@ -38,6 +41,7 @@ export const CATEGORIAS = [
     nombre: "Negocios",
     color: "verde",
     descripcion: "Emprendimiento, finanzas y marketing.",
+    imagen: foto("1552664730-d307ca884978"),
     cursos: [
       { nombre: "Emprendimiento", descripcion: "Convierte una idea en un negocio viable.", imagen: foto("1559136555-9303baea8ebd") },
       { nombre: "Marketing digital", descripcion: "Redes sociales, publicidad y métricas.", imagen: foto("1460925895917-afdab827c52f") },
@@ -49,6 +53,7 @@ export const CATEGORIAS = [
     nombre: "Salud",
     color: "violeta",
     descripcion: "Primeros auxilios, nutrición y bienestar.",
+    imagen: foto("1505751172876-fa1923c5c528"),
     cursos: [
       { nombre: "Primeros auxilios", descripcion: "Actúa correctamente ante una emergencia.", imagen: foto("1603398938378-e54eab446dde") },
       { nombre: "Nutrición saludable", descripcion: "Aprende a comer mejor con hábitos simples.", imagen: foto("1490645935967-10de6ba17061") },

@@ -1,4 +1,3 @@
-import { Link } from "react-router-dom";
 import TarjetaCategoria from "../components/TarjetaCategoria.jsx";
 import { CATEGORIAS } from "../data/categorias.js";
 
@@ -12,7 +11,6 @@ function Inicio() {
           <TarjetaCategoria key={categoria.nombre} categoria={categoria} />
         ))}
       </section>
-      <Link to="/categoria/Tecnología">Ver catálogo destacado</Link>
     </main>
   );
 }

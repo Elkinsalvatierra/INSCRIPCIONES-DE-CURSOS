@@ -157,17 +157,19 @@ main > section {
   color: var(--texto-suave);
 }
 
-.tarjeta-categoria span {
+.tarjeta-categoria span:last-child {
   margin-top: auto;
   font-weight: 600;
   color: var(--color);
 }
 
+.tarjeta-categoria,
 .tarjeta-curso {
   padding: 0;
   overflow: hidden;
 }
 
+.tarjeta-categoria img,
 .tarjeta-curso img {
   width: 100%;
   height: 150px;
@@ -175,6 +177,7 @@ main > section {
   background: var(--borde);
 }
 
+.tarjeta-categoria > div,
 .tarjeta-curso > div {
   display: flex;
   flex: 1;
