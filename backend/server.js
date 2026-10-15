@@ -13,6 +13,26 @@ app.use(cors());
 app.use(express.json());
 app.use(express.static(FRONTEND));
 
+
+// Categorías y cursos permitidos (los mismos de frontend/src/data/categorias.js)
+const CATALOGO = {
+  "Tecnología": ["SQL Server", "Desarrollo web con React", "Node.js y Express", "Python desde cero"],
+  "Idiomas": ["Inglés básico", "Inglés intermedio", "Portugués", "Francés"],
+  "Arte y diseño": ["Diseño gráfico", "Ilustración digital", "Fotografía", "Diseño UX/UI"],
+  "Negocios": ["Emprendimiento", "Marketing digital", "Finanzas personales", "Excel para negocios"],
+  "Salud": ["Primeros auxilios", "Nutrición saludable", "Yoga y bienestar", "Salud mental"]
+};
+
+// Solo letras (con tildes y ñ) y un espacio entre palabras
+const SOLO_LETRAS = /^[A-Za-zÁÉÍÓÚáéíóúÑñÜü]+( [A-Za-zÁÉÍÓÚáéíóúÑñÜü]+)*$/;
+
+// Fecha de hoy en formato AAAA-MM-DD
+function fechaHoy() {
+  const hoy = new Date();
+  hoy.setMinutes(hoy.getMinutes() - hoy.getTimezoneOffset());
+  return hoy.toISOString().slice(0, 10);
+}
+
 function validarFecha(fecha) {
   if (typeof fecha !== "string") {
     return false;
@@ -148,6 +168,12 @@ app.post("/registros", (req, res) => {
         });
       }
 
+      if (!SOLO_LETRAS.test(nombre.trim()) || nombre.trim().length < 3) {
+        return res.status(400).json({
+          error: "El nombre solo puede tener letras y espacios (mínimo 3 letras)."
+        });
+      }
+
       const emailValido = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(
         email.trim()
       );
@@ -161,6 +187,26 @@ app.post("/registros", (req, res) => {
       if (!validarFecha(fecha)) {
         return res.status(400).json({
           error: "La fecha debe ser válida y tener el formato AAAA-MM-DD."
+        });
+      }
+
+            if (fecha < fechaHoy()) {
+        return res.status(400).json({
+          error: "La fecha de inicio no puede ser anterior a hoy."
+        });
+      }
+
+      const cursosDeCategoria = CATALOGO[categoria.trim()];
+
+      if (!cursosDeCategoria) {
+        return res.status(400).json({
+          error: "La categoría seleccionada no existe."
+        });
+      }
+
+      if (!cursosDeCategoria.includes(curso.trim())) {
+        return res.status(400).json({
+          error: "El curso no pertenece a la categoría seleccionada."
         });
       }
 
@@ -241,6 +287,13 @@ app.get("/{*ruta}", (req, res, next) => {
 });
 
 app.use((error, req, res, next) => {
+  // Si el cuerpo de la petición no es un JSON válido se responde 400
+  if (error.type === "entity.parse.failed") {
+    return res.status(400).json({
+      error: "El cuerpo de la petición no es un JSON válido."
+    });
+  }
+
   console.error("Error del servidor:", error);
 
   if (req.path.startsWith("/registros")) {
