@@ -157,17 +157,19 @@ main > section {
   color: var(--texto-suave);
 }
 
-.tarjeta-categoria span {
+.tarjeta-categoria span:last-child {
   margin-top: auto;
   font-weight: 600;
   color: var(--color);
 }
 
+.tarjeta-categoria,
 .tarjeta-curso {
   padding: 0;
   overflow: hidden;
 }
 
+.tarjeta-categoria img,
 .tarjeta-curso img {
   width: 100%;
   height: 150px;
@@ -175,6 +177,7 @@ main > section {
   background: var(--borde);
 }
 
+.tarjeta-categoria > div,
 .tarjeta-curso > div {
   display: flex;
   flex: 1;
@@ -343,6 +346,23 @@ main > section {
   color: #166534;
 }
 
+.buscador {
+  width: 100%;
+  max-width: 360px;
+  margin-bottom: 1rem;
+  padding: 0.6rem 1rem;
+  border: 1px solid var(--borde);
+  border-radius: 999px;
+  background: var(--superficie);
+  color: var(--texto);
+  font: inherit;
+}
+
+.buscador:focus {
+  outline: 2px solid var(--primario);
+  outline-offset: 1px;
+}
+
 /* ---------- Formulario ---------- */
 .descripcion-curso {
   grid-column: 1 / -1;
@@ -351,6 +371,31 @@ main > section {
   border-left: 4px solid var(--primario);
   border-radius: 0.35rem;
   background: #eff6ff;
+}
+
+/* ---------- Botón para volver ---------- */
+.boton-volver {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  margin-bottom: 1rem;
+  padding: 0.5rem 1rem;
+  border: 1px solid var(--borde);
+  border-radius: 999px;
+  background: var(--superficie);
+  color: var(--texto);
+  font-weight: 600;
+  text-decoration: none;
+  transition: border-color 0.15s, color 0.15s;
+}
+
+.boton-volver::before {
+  content: "←";
+}
+
+.boton-volver:hover {
+  border-color: var(--primario);
+  color: var(--primario);
 }
 
 /* ---------- Página 404 ---------- */
